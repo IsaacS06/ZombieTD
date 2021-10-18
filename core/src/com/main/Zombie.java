@@ -9,15 +9,15 @@ public class Zombie {
 
     Zombie(String type, int x, int y, int speed){
         this.type = type;
+        w = Tables.zombie_resources.get(type) == null ? 50 : Tables.zombie_resources.get(type).getWidth();
+        h = Tables.zombie_resources.get(type) == null ? 50 : Tables.zombie_resources.get(type).getHeight();
         this.x = x;
         this.y = y;
         this.speed = speed;
-        w = 50;
-        h = 50;
     }
 
     void draw(SpriteBatch batch){
-        batch.draw(Resources.test_zombie, x, y);
+        batch.draw(Tables.zombie_resources.get(type) == null ? Resources.zombie : Tables.zombie_resources.get(type), x, y);
     }
 
     void update(){
