@@ -1,0 +1,6 @@
+git pull
+git add .
+git commit -m "Changes Saved"
+git push
+
+https://github.com/armageddonarmadillo/ztd_m1a

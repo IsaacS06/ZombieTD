@@ -41,17 +41,28 @@ public class Main extends ApplicationAdapter {
 	}
 
 	public void update(){
+		spawn_zombies();
 		tap();
 		for(Zombie z : zombies) z.update();
 		for(Cannon c : cannons) c.update();
 		for(Button b : buttons) b.update();
+
+		housekeeping();
 	}
 
 	void tap(){
-		if(Gdx.input.isTouched()){
-			int x = Gdx.input.getX(), y = Gdx.graphics.getHeight() -  Gdx.input.getY();
-			cannons.add(new Cannon("fire", x, y));
+		if(Gdx.input.justTouched()){
+			int x = Gdx.input.getX(), y = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+			for(Cannon c : cannons) if(c.hitbox().contains(x, y)) return;
+			if(buildable(x, y)) cannons.add(new Cannon("fire", x, y));
 		}
+	}
+
+	boolean buildable(int x, int y) {
+		// 0 - 200 | 300 - 500 | 1000
+		return ((y > 0 && y < 200 || y > 300 && y < 500) && x < 1000);
+
 	}
 
 	void setup(){
@@ -62,11 +73,13 @@ public class Main extends ApplicationAdapter {
 	}
 
 	public void spawn_zombies(){
-		for (int i = 0; i < 1000; i ++){
-			zombies.add(new Zombie("zzz", 526 + i * 50, r.nextInt(600), 5));
-		}
+		if(!zombies.isEmpty()) return;
+		for (int i = 0; i < 5; i ++) zombies.add(new Zombie("zombie", 1024 + i * 50, r.nextInt(400), 5));
 	}
 
+	void housekeeping(){
+		for(Zombie z : zombies) if(!z.active) { zombies.remove(z); break; }
+	}
 
 	//*******************END OF FILE*******************\\
 	@Override
