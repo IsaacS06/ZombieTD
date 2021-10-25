@@ -13,6 +13,8 @@ public class Resources {
     static Texture laser_cannon_button = new Texture(Gdx.files.internal("laserCannonIcon.png"));
     static Texture super_cannon_button = new Texture(Gdx.files.internal("SuperCannonIcon.png"));
     static Texture mounted_cannon_button = new Texture(Gdx.files.internal("mountedCannonIcon.png"));
+    static Texture locked_button = new Texture(Gdx.files.internal("Locked.png"));
+    static Texture selected_button = new Texture(Gdx.files.internal("border.png"));
 
     //Cannons
     static Texture cannon = new Texture(Gdx.files.internal("Cannon.png"));
@@ -23,6 +25,10 @@ public class Resources {
     static Texture super_cannon = new Texture(Gdx.files.internal("SuperCannon.png"));
     static Texture mounted_cannon = new Texture(Gdx.files.internal("mountedCannon.png"));
 
+    //Bullets
+    static Texture bullet = new Texture(Gdx.files.internal("Bullet.png"));
+    static Texture fire_bullet = new Texture(Gdx.files.internal("firebullet.png"));
+    static Texture super_bullet = new Texture(Gdx.files.internal("superbullet.png"));
 
     //Zombies
     static Texture test_zombie = new Texture(Gdx.files.internal("Zombie.png"));

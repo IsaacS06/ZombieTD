@@ -5,9 +5,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 
 public class Zombie {
-    int x, y, w, h;
+    int x, y, w, h, hp;
     int speed;
     String type;
     boolean active = true;
@@ -27,6 +28,7 @@ public class Zombie {
         w = Resources.zombie.getWidth() / cols;
         h = Resources.zombie.getHeight() / rows;
         init_animations();
+        hp = 1;
     }
 
     void draw(SpriteBatch batch){
@@ -38,7 +40,7 @@ public class Zombie {
     void update(){
         x -= speed;
         //if(x + w < 0) active = false;
-        active = x + w > 0;
+        active = x + w > 0 && hp > 0;
     }
 
     void init_animations(){
@@ -58,4 +60,6 @@ public class Zombie {
         anim = new Animation(frame_time, frames);
 
     }
+
+    Rectangle hitbox() { return new Rectangle(x, y, w, h); }
 }

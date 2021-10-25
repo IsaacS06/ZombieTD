@@ -16,6 +16,7 @@ public class Tables {
         cannon_resources.put("laser", Resources.laser_cannon);
         cannon_resources.put("mounted", Resources.mounted_cannon);
 
+        button_resources.put("cannon", Resources.cannon_button);
         button_resources.put("fire", Resources.fire_cannon_button);
         button_resources.put("super", Resources.super_cannon_button);
         button_resources.put("double", Resources.double_cannon_button);
