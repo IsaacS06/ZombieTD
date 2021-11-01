@@ -15,6 +15,8 @@ public class Resources {
     static Texture mounted_cannon_button = new Texture(Gdx.files.internal("mountedCannonIcon.png"));
     static Texture locked_button = new Texture(Gdx.files.internal("Locked.png"));
     static Texture selected_button = new Texture(Gdx.files.internal("border.png"));
+    static Texture button_close = new Texture(Gdx.files.internal("x.png"));
+    static Texture tooltip_bg = new Texture(Gdx.files.internal("ttbg.png"));
 
     //Cannons
     static Texture cannon = new Texture(Gdx.files.internal("Cannon.png"));
