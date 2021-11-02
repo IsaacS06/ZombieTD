@@ -23,7 +23,7 @@ public class Tables {
         button_resources.put("double", Resources.double_cannon_button);
         button_resources.put("laser", Resources.laser_cannon_button);
         button_resources.put("mounted", Resources.mounted_cannon_button);
-        button_resources.put("mounted", Resources.flappy_cannon_button);
+        button_resources.put("flappy", Resources.flappy_cannon_button);
         button_resources.put("close", Resources.button_close);
 
         tooltip_info.put("cannon", "Fires some bullets at some rate of fire.");
