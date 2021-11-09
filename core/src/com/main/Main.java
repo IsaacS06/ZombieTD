@@ -36,6 +36,7 @@ public class Main extends ApplicationAdapter {
 		update();
 		batch.begin();
 		/* bg */ batch.draw(Resources.bg, 0, 0);
+		UI.draw(batch);
 		for(Zombie z : zombies) z.draw(batch);
 		for(Cannon c : cannons) c.draw(batch);
 		for(Button b : buttons) b.draw(batch);
@@ -58,12 +59,23 @@ public class Main extends ApplicationAdapter {
 		if(Gdx.input.justTouched()){
 			int x = Gdx.input.getX(), y = Gdx.graphics.getHeight() - Gdx.input.getY();
 
+			for(Button b : buttons){
+				if(b.t != null && !b.t.hidden && b.t.close.hitbox().contains(x, y)) { b.t.hidden = true; return; }
+				if(b.t != null && !b.t.hidden && b.t.hitbox().contains(x, y)) return;
+				}
+
+
 			for(Button b : buttons) if(b.hitbox().contains(x, y)){
 				if(b.locked) {
-				if(b.t != null && b.t.hidden) { hide_tt(); b.t.hidden = false; }
-				else { b.locked = false; if(b.t != null) b.t.hidden = true; }
-				}
-				else {
+					if(b.t != null && b.t.hidden) { hide_tt(); b.t.hidden = false; }
+					else {
+						if(UI.money >= (Tables.values.get("unlock_" + current_type) == null ? 500 : Tables.values.get("unlock_" + current_type))) {
+							UI.money -= (Tables.values.get("unlock_" + current_type) == null ? 500 : Tables.values.get("unlock_" + current_type));
+							b.locked = false;
+						}
+					if(b.t != null) b.t.hidden = true; }
+					}
+					else {
 					deselect();
 					b.selected = true;
 					current_type = b.type;
@@ -91,17 +103,17 @@ public class Main extends ApplicationAdapter {
 
 	void setup(){
 		Tables.init();
-			buttons.add(new Button("cannon", 25 + buttons.size() * 75, 525));
-			buttons.add(new Button("fire", 25 + buttons.size() * 75, 525));
-			buttons.add(new Button("super", 25 + buttons.size() * 75, 525));
-			buttons.add(new Button("double", 25 + buttons.size() * 75, 525));
-			buttons.add(new Button("laser", 25 + buttons.size() * 75, 525));
-			buttons.add(new Button("mounted", 25 + buttons.size() * 75, 525));
+			buttons.add(new Button("cannon", 225 + buttons.size() * 75, 525));
+			buttons.add(new Button("fire", 225 + buttons.size() * 75, 525));
+			buttons.add(new Button("super", 225 + buttons.size() * 75, 525));
+			buttons.add(new Button("double", 225 + buttons.size() * 75, 525));
+			buttons.add(new Button("laser", 225 + buttons.size() * 75, 525));
+			buttons.add(new Button("mounted", 225 + buttons.size() * 75, 525));
 	}
 
 	public void spawn_zombies(){
 		if(!zombies.isEmpty()) return;
-		for (int i = 0; i < 5; i ++) zombies.add(new Zombie("zombie", 1024 + i * 50, r.nextInt(400), 5));
+		for (int i = 0; i < 5; i ++) zombies.add(new Zombie("zombie", 1024 + i * 50, r.nextInt(400)));
 	}
 
 	void housekeeping(){
