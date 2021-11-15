@@ -69,5 +69,9 @@ public class Tables {
         values.put("health_speedy", 2);
         values.put("health_fast", 3);
         values.put("health_riot", 10);
+
+        //ANIMATION COLUMNS
+        values.put("columns_laser", 16);
+        values.put("columns_speedy", 6);
     }
 }

@@ -8,13 +8,13 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 
 public class Zombie {
-    int x, y, w, h, hp;
+    int x, y, w, h, hp, mhp;
     int speed;
     String type;
     boolean active = true;
 
     //Animation Variables
-    int rows = 1, cols = 4;
+    int rows = 1, cols;
     Animation anim;
     TextureRegion[] frames;
     TextureRegion frame;
@@ -26,6 +26,8 @@ public class Zombie {
         this.y = y;
         this.speed = Tables.values.get("speed_" + type) == null ? 1 : Tables.values.get("speed_" + type);
         this.hp = Tables.values.get("health_" + type) == null ? 3 : Tables.values.get("health_" + type);
+        mhp = hp;
+        cols = Tables.values.get("columns_" + type) == null ? 1 : Tables.values.get("columns_" + type);
         this.w = (Tables.zombie_resources.get(type) == null ? Resources.zombie.getWidth() : Tables.zombie_resources.get(type).getWidth()) / cols;
         this.h = (Tables.zombie_resources.get(type) == null ? Resources.zombie.getHeight() : Tables.zombie_resources.get(type).getHeight()) / rows;
         init_animations();
@@ -36,12 +38,17 @@ public class Zombie {
         frame_time += Gdx.graphics.getDeltaTime();
         frame = (TextureRegion)anim.getKeyFrame(frame_time, true);
         batch.draw(frame, x, y);
+        batch.draw(Resources.red_bar, x + 1, y + h, mhp * (float)(w / mhp), 5);
+        batch.draw(Resources.green_bar, x + 1, y + h, hp * (float)(w / mhp), 5);
+
+
+
     }
 
     void update(){
         x -= speed;
-        //if(x + w < 0) active = false;
         active = x + w > 0 && hp > 0;
+
     }
 
     void init_animations(){
