@@ -7,10 +7,16 @@ public class Tables {
     static HashMap<String, Texture> cannon_resources = new HashMap<String, Texture>();
     static HashMap<String, Texture> button_resources = new HashMap<String, Texture>();
     static HashMap<String, Texture> zombie_resources = new HashMap<String, Texture>();
+    static HashMap<String, Texture> resources = new HashMap<String, Texture>();
     static HashMap<String, String> tooltip_info = new HashMap<String, String>();
     static HashMap<String, Integer>values = new HashMap<String, Integer>();
 
     static void init(){
+        resources.put("effect_boom", Resources.boom);
+        resources.put("effect_muzzle_flash", Resources.muzzle_flash);
+        resources.put("effect_particles", Resources.particles);
+        resources.put("effect_click", Resources.click);
+
         cannon_resources.put("cannon", Resources.cannon);
         cannon_resources.put("fire", Resources.fire_cannon);
         cannon_resources.put("double", Resources.double_cannon);
@@ -26,6 +32,7 @@ public class Tables {
         button_resources.put("mounted", Resources.mounted_cannon_button);
         button_resources.put("flappy", Resources.flappy_cannon_button);
         button_resources.put("close", Resources.button_close);
+        button_resources.put("wall", Resources.wall_button);
 
         tooltip_info.put("cannon", "Fires some bullets at some rate of fire.");
         tooltip_info.put("fire", "Fires some bullets at some rate of fire.");
@@ -73,5 +80,7 @@ public class Tables {
         //ANIMATION COLUMNS
         values.put("columns_laser", 16);
         values.put("columns_speedy", 6);
+        values.put("columns_boom", 7);
+        values.put("columns_particles", 11);
     }
 }

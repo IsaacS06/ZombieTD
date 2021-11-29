@@ -57,6 +57,7 @@ public class Cannon {
     }
 
     void fire() {
+        if(Main.zombies.isEmpty()) return;
         if (counter++ >= delay) {
             Main.bullets.add(new Bullet("bbb", x + w, y + h / 2));
             counter = 0;

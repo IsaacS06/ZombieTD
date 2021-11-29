@@ -44,4 +44,11 @@ public class Resources {
     static Texture riot_zombie = new Texture(Gdx.files.internal("riotzombie.png"));
     static Texture riot_zombie_big = new Texture(Gdx.files.internal("riotzombieBIG.png"));
     static Texture speedy_zombie = new Texture(Gdx.files.internal("speedy_zombie.png"));
+
+    //Effects
+    static Texture particles = new Texture(Gdx.files.internal("New Piskel.png"));
+    static Texture muzzle_flash = new Texture(Gdx.files.internal("muzzleflash.png"));
+    static Texture boom = new Texture(Gdx.files.internal("boom.png"));
+    static Texture damaged = new Texture(Gdx.files.internal("damaged.png"));
+    static Texture click = new Texture(Gdx.files.internal("click_effect.png"));
 }
