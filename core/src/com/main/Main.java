@@ -14,6 +14,7 @@ public class Main extends ApplicationAdapter {
 	SpriteBatch batch;
 	Random r;
 	static  String current_type = "";
+	static boolean pause = false;
 
 	//TODO: GAME LISTS\
 	static ArrayList<Zombie> zombies = new ArrayList<Zombie>();
@@ -48,16 +49,19 @@ public class Main extends ApplicationAdapter {
 	}
 
 	public void update(){
-		spawn_zombies();
 		tap();
-		for(Zombie z : zombies) z.update();
-		for(Cannon c : cannons) c.update();
-		for(Button b : buttons) b.update();
-		for(Bullet b : bullets) b.update();
-		for(Wall w : walls) w.update();
+		spawn_zombies();
+		if(!pause){
 
+			for (Zombie z : zombies) z.update();
+			for (Cannon c : cannons) c.update();
+			for (Button b : buttons) b.update();
+			for (Bullet b : bullets) b.update();
+			for (Wall w : walls) w.update();
+		}
 		housekeeping();
 	}
+
 
 	void tap(){
 		if(Gdx.input.justTouched()){
@@ -72,6 +76,11 @@ public class Main extends ApplicationAdapter {
 
 
 			for(Button b : buttons) if(b.hitbox().contains(x, y)){
+				if(b.type.equals("pause") || b.type.equals("play")) {
+					pause = !pause;
+					b.type = pause ? "play" : "pause";
+					return;
+				}
 				if(b.locked) {
 					if(b.t != null && b.t.hidden) { hide_tt(); b.t.hidden = false; }
 					else {
@@ -86,6 +95,8 @@ public class Main extends ApplicationAdapter {
 							if(walls.size() < 3) walls.add(new Wall(walls.size() * 50, 0, b.type.equals("mounted")));
 							return;
 						}
+
+
 					deselect();
 					b.selected = true;
 					current_type = b.type;
@@ -124,6 +135,9 @@ public class Main extends ApplicationAdapter {
 			buttons.get(buttons.size() - 1).locked = false;
 			buttons.get(buttons.size() - 1).selected = false;
 			buttons.add(new Button("mounted", 225 + buttons.size() * 75, 525));
+			buttons.add(new Button("pause", 1024 - 75, 525));
+			buttons.get(buttons.size() - 1).locked = false;
+			buttons.get(buttons.size() - 1).selected = false;
 	}
 
 	public void spawn_zombies(){

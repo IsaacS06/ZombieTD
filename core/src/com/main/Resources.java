@@ -21,6 +21,8 @@ public class Resources {
     static Texture green_bar = new Texture(Gdx.files.internal("green_bar.png"));
     static Texture wall = new Texture(Gdx.files.internal("Wall.png"));
     static Texture wall_button = new Texture(Gdx.files.internal("WallIcon.png"));
+    static Texture pause = new Texture(Gdx.files.internal("pause.png"));
+    static Texture play = new Texture(Gdx.files.internal("play.png"));
 
     //Cannons
     static Texture cannon = new Texture(Gdx.files.internal("Cannon.png"));

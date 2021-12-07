@@ -33,6 +33,8 @@ public class Tables {
         button_resources.put("flappy", Resources.flappy_cannon_button);
         button_resources.put("close", Resources.button_close);
         button_resources.put("wall", Resources.wall_button);
+        button_resources.put("pause", Resources.pause);
+        button_resources.put("play", Resources.play);
 
         tooltip_info.put("cannon", "Fires some bullets at some rate of fire.");
         tooltip_info.put("fire", "Fires some bullets at some rate of fire.");
