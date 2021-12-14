@@ -31,26 +31,16 @@ public class Bullet {
         }
 
     float get_angle(){
-        float zx = 0, zy = 0;
-        //float zx = Main.zombies.get(0).x + Main.zombies.get(0).w / 2, zy = Main.zombies.get(0).y + Main.zombies.get(0).h / 2;
-        //return (float)(Math.atan((y - zy) / (x - zx)) + (+ x >= zx ? Math.PI : 0));
-        float[] difs = new float[Main.zombies.size()];
-        int index = 0;
-        for (Zombie z : Main.zombies){
-            int dx = x - z.x , dy = y - z.y;
-            difs[index++] = (float)Math.sqrt(dx + dx + dy * dy);
-        }
-        Arrays.sort(difs);
-        float closest = difs[0];
-        for (Zombie z : Main.zombies){
-            int dx = x - z.x , dy = y - z.y;
-            if((float)Math.sqrt(dx + dx + dy * dy) == closest) {
-                zx = z.x + (float) z.w / 2;
-                zy = z.y + (float) z.h / 2;
-            }
+        Zombie closest = null;
+        for(Zombie z : Main.zombies){
+            if(closest == null) { closest = z; continue; }
+            float cd = (float)Math.sqrt((x - closest.x) * (x - closest.x) + (y - closest.y) * (y - closest.y));
+            float zd = (float)Math.sqrt((x - z.x) * (x - z.x) + (y - z.y) * (y - z.y));
+            if(zd < cd) closest = z;
         }
 
-        return (float)((Math.atan((y - zy) / (x - zx)) + (x >= zx ? Math.PI : 0)));
+
+        return (float)((Math.atan((float)(y - closest.y) / (x - closest.x)) + (x >= closest.x ? Math.PI : 0)));
     }
 
 

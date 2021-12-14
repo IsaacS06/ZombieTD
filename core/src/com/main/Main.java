@@ -13,8 +13,10 @@ public class Main extends ApplicationAdapter {
 	//TODO: GAME VARIABLES
 	SpriteBatch batch;
 	Random r;
+	Start start;
 	static  String current_type = "";
 	static boolean pause = false;
+	static boolean started = false;
 
 	//TODO: GAME LISTS\
 	static ArrayList<Zombie> zombies = new ArrayList<Zombie>();
@@ -35,6 +37,7 @@ public class Main extends ApplicationAdapter {
 	@Override
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);
+		if(!started) { batch.begin(); start.draw(batch); batch.end(); update(); return; }
 		update();
 		batch.begin();
 		/* bg */ batch.draw(Resources.bg, 0, 0);
@@ -50,6 +53,7 @@ public class Main extends ApplicationAdapter {
 
 	public void update(){
 		tap();
+		if(!started) return;
 		spawn_zombies();
 		if(!pause){
 
@@ -66,6 +70,8 @@ public class Main extends ApplicationAdapter {
 	void tap(){
 		if(Gdx.input.justTouched()){
 			int x = Gdx.input.getX(), y = Gdx.graphics.getHeight() - Gdx.input.getY();
+
+			if(!started) { start.handle_clicks(x, y); return; }
 
 			effects.add(new Effect("click", x, y));
 
@@ -124,6 +130,7 @@ public class Main extends ApplicationAdapter {
 
 	void setup(){
 		Tables.init();
+		start = new Start();
 			buttons.add(new Button("cannon", 225 + buttons.size() * 75, 525));
 			buttons.get(buttons.size() - 1).locked = false;
 			buttons.get(buttons.size() - 1).selected = true;

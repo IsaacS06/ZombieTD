@@ -6,6 +6,9 @@ import com.badlogic.gdx.graphics.Texture;
 public class Resources {
     //UI Elements
     static Texture bg = new Texture(Gdx.files.internal("DungeonBackground.png"));
+    static Texture bg_start = new Texture(Gdx.files.internal("ztdtitle.png"));
+    static Texture start_button = new Texture(Gdx.files.internal("startButton.png"));
+    static Texture exit_button = new Texture(Gdx.files.internal("exitButton.png"));
     static Texture cannon_button = new Texture(Gdx.files.internal("CannonIcon.png"));
     static Texture double_cannon_button = new Texture(Gdx.files.internal("doubleCannonIcon.png"));
     static Texture fire_cannon_button = new Texture(Gdx.files.internal("FireCannonIcon.png"));
