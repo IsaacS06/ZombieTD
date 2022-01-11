@@ -1,20 +1,23 @@
 package com.main;
 
+
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Start {
     mButton m1, m2, m3;
-    final int bw = 150;
-    final int bh = 75;
+
 
     Start(){
-        m1 = new mButton("start", (1024 / 2) - (bw / 2), 325, bw, bh);
-        m2 = new mButton("start", (1024 / 2) - (bw / 2), 200, bw, bh);
-        m3 = new mButton("start", (1024 / 2) - (bw / 2), 75, bw, bh);
+        m1 = new mButton("start", (1024 / 2) - (mButton.bw / 2), 325, mButton.bw, mButton.bh);
+        m2 = new mButton("about", (1024 / 2) - (mButton.bw / 2), 200, mButton.bw, mButton.bh);
+        m3 = new mButton("exit", (1024 / 2) - (mButton.bw / 2), 75, mButton.bw, mButton.bh);
     }
 
-    void handle_clicks(int x, int y){
+    void handle_clicks(int x, int y) {
         if(m1.hitbox().contains(x, y)) Main.started = true;
+        if(m1.hitbox().contains(x, y)) System.out.println("starting");
+        if(m2.hitbox().contains(x, y)) Main.about = true;
+        if(m2.hitbox().contains(x, y)) System.out.println("aboutung");
     }
 
     void draw(SpriteBatch batch) {

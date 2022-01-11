@@ -27,7 +27,7 @@ public class Zombie {
         this.speed = Tables.values.get("speed_" + type) == null ? 1 : Tables.values.get("speed_" + type);
         this.hp = Tables.values.get("health_" + type) == null ? 3 : Tables.values.get("health_" + type);
         mhp = hp;
-        cols = Tables.values.get("columns_" + type) == null ? 1 : Tables.values.get("columns_" + type);
+        cols = Tables.values.get("columns_" + type) == null ? 4 : Tables.values.get("columns_" + type);
         this.w = (Tables.zombie_resources.get(type) == null ? Resources.zombie.getWidth() : Tables.zombie_resources.get(type).getWidth()) / cols;
         this.h = (Tables.zombie_resources.get(type) == null ? Resources.zombie.getHeight() : Tables.zombie_resources.get(type).getHeight()) / rows;
         init_animations();
@@ -48,6 +48,9 @@ public class Zombie {
     void update(){
         x -= speed;
         active = x + w > 0 && hp > 0;
+        UI.life -= x + w > 0 ? 0: 1;
+        UI.score += hp > 0 ? 0 : 1;
+        UI.money += hp > 0 ? 0 : 5;
         hit_detect();
     }
 
@@ -72,8 +75,8 @@ public class Zombie {
     Rectangle hitbox() { return new Rectangle(x, y, w, h); }
 
     void hit_detect(){
-        if(Main.walls.isEmpty()) return;
-        for(Wall w : Main.walls) if(w.hitbox().contains(x, y)) {
+        if(ZTD.walls.isEmpty()) return;
+        for(Wall w : ZTD.walls) if(w.hitbox().contains(x, y)) {
             active = false;
             w.hp--;
         }

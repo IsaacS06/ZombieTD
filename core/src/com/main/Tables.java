@@ -57,12 +57,15 @@ public class Tables {
         values.put("place_super", 25);
         values.put("place_laser", 30);
         values.put("place_double", 30);
+        values.put("place_mounted", 35);
+        values.put("place_wall", 25);
 
         //CANNON UNLOCK COSTS
         values.put("unlock_fire", 500);
         values.put("unlock_super", 500);
         values.put("unlock_laser", 1000);
         values.put("unlock_double", 250);
+        values.put("unlock_mounted", 1000);
 
         //CANNON FIRE DELAY
         values.put("delay_fire", 10);
