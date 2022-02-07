@@ -24,6 +24,7 @@ public class mButton {
                 type.equals("exit") ? "Exit" :
                 type.equals("about") ? "About" :
                 type.equals("back") ? "Back" :
+                type.equals("retry") ? "Try Again" :
                 "Button"
             );
         }

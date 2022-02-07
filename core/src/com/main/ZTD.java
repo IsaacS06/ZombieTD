@@ -36,6 +36,7 @@ public class ZTD {
             for (Wall w : walls) w.update();
         }
         housekeeping();
+        Main.gameover = UI.life <= 0;
     }
 
     void draw(SpriteBatch batch) {
@@ -50,9 +51,7 @@ public class ZTD {
         for (Effect e : effects) e.draw(batch);
     }
 
-
-
-        void tap(int x, int y) {
+    void tap(int x, int y) {
                 effects.add(new Effect("click", x, y));
 
                 for (Button b : buttons) {
@@ -108,9 +107,7 @@ public class ZTD {
                 }
         }
 
-
-
-        void housekeeping () {
+    void housekeeping () {
             for (Zombie z : zombies)
                 if (!z.active) {
                     zombies.remove(z);
@@ -138,13 +135,13 @@ public class ZTD {
                 }
         }
 
-        boolean buildable ( int x, int y){
+    boolean buildable ( int x, int y){
             // 0 - 200 | 300 - 500 | 1000
             return ((y > 0 && y < 200 || y > 300 && y < 500) && x < 1000);
 
         }
 
-        void hide_tt () {
+    void hide_tt () {
             for (Button b : buttons) if (b.t != null) b.t.hidden = true;
         }
 
@@ -152,7 +149,19 @@ public class ZTD {
         for(Button b : buttons) b.selected = false;
     }
 
-        void setup () {
+    void setup () {
+        //clear lists
+            zombies.clear();
+            cannons.clear();
+            buttons.clear();
+            bullets.clear();
+            walls.clear();
+            effects.clear();
+            //set game values
+            UI.money = 250;
+            UI.wave = 0;
+            UI.score = 0;
+            UI.life = 20;
             Tables.init();
             buttons.add(new Button("cannon", 225 + buttons.size() * 75, 525));
             buttons.get(buttons.size() - 1).locked = false;
